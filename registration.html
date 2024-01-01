@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REGISTRATION</title>
+        <style>
+            .form{
+                padding-top: 35px;
+            }
+            .boxs{
+                border: 15px solid #84d3cc;
+                height: 400px;
+                margin-left: 150px;
+                margin-right: 150px;
+            }
+            .s{
+                background-color: lightgreen;
+            }
+            .box{
+                border: 15px solid black;
+                height: 400px;
+                margin-left: 150px;
+                margin-right: 150px;
+                margin-top: 20px;
+                box-shadow: 0 0 5px #333;
+                background-color:  #84d3cc;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="boxs">
+        <center>
+        <h1 id="h1">REGISTRATION FORM</h1>
+        <form id="form">
+            <div class="form">
+            <label for="name" class="a">NAME</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text"  id="text" style="height: 30px; width: 150px; border-radius: 10px; text-align: center;" name="name" placeholder="Enter your name" required><br><br>
+
+            <label for="email" class="b">Email</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="email" id="email"  style="height: 30px; width: 150px; border-radius: 10px; text-align: center;" name="email" placeholder="Enter your Email" required><br><br>
+
+            <label for="password" class="c">Password</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="password" id="password"  style="height: 30px; width: 150px; border-radius: 10px; text-align: center;" name="password" placeholder="Enter your password"><br><br>
+
+            <label for="Date of birth" class="d">Date Of Birth</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="date"  id="dob"  style="height: 30px; width: 150px; border-radius: 10px; text-align: center;"  min="1980-04-30" max="2005-04-30" name="dob" placeholder="Enter yor DOB" required><br><br>
+
+            <label for="accept"  style="font-size: 20px;"><b>Accept Terms & Condition</b></label>&nbsp;
+            <input type="checkbox"  id="check"name="Accept Terms & Conditions" required><br><br>
+            <div>
+           <button class="s" onclick="result()" class="sub" id="submit">Submit</button>
+            </div>
+            </div>
+        </form>
+        </center>
+        </div>
+        <div class="box">
+            <centre>
+            <h1 style="padding-top: 50px; text-align: center;">ENTERIES</h1>
+            <table style="width:100%" id="table" border="3">
+                <tr>
+                    <th>NAME</th>
+                    <th>E-MAIL</th>
+                    <th>PASSWORD</th>
+                    <th>DOB</th>
+                    <th>ACCEPTED TERMS?</th>
+                  </tr>
+              </table>
+              </centre>
+        </div>
+        <script type="text/javascript">
+         var form = document.getElementById('form');
+        var tableBody = document.querySelector('#table tbody');
+        form.addEventListener('submit',function(event){
+            event.preventDefault();
+            var name = document.getElementById('text').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var dob = document.getElementById('dob').value;
+            var checkbox = document.getElementById('check').checked;
+            localStorage.setItem("NAME",name);
+            localStorage.setItem("E-MAIL", email);
+            localStorage.setItem("PASSWORD", password);
+            localStorage.setItem("DOB", dob);
+            localStorage.setItem("ACCEPTED TERMS?", checkbox);
+        var newRow = document.createElement('tr');
+        newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${password}</td>
+        <td>${dob}</td>
+        <td>${checkbox ? 'Yes' : 'No'}</td>`;
+        tableBody.appendChild(newRow);
+        form.reset();
+        });
+
+        </script>
+    </body>
+</html>
